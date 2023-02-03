@@ -1,11 +1,11 @@
 import { Link,NavLink } from "react-router-dom";
-import {MenNav} from './Navbar/MiniNavbar/Men';
-import {BeautyNav} from './Navbar/MiniNavbar/BeautyNav';
-import {StudioNav} from './Navbar/MiniNavbar/Studio';
-import {KidsNav} from '././Navbar/MiniNavbar/KidsNav';
-import {WomenNav} from './Navbar/MiniNavbar/WomenNav';
-import {HomeLivingNav} from './Navbar/MiniNavbar/HomeLivingNav'
-import Myntra_logo from './Navbar/NavImage/logo.png';
+import {MenNav} from './MiniNavbar/Men';
+import {BeautyNav} from './MiniNavbar/BeautyNav';
+import {StudioNav} from './MiniNavbar/Studio';
+import {KidsNav} from './MiniNavbar/KidsNav';
+import {WomenNav} from './MiniNavbar/WomenNav';
+import {HomeLivingNav} from './MiniNavbar/HomeLivingNav'
+import Myntra_logo from './NavImage/logo.png';
 import styled from "styled-components";
 import "./Navbar.css";
 //import { Login } from "../login";
