@@ -13,6 +13,10 @@
   margin-left: 3%;
   border-radius: 5px;
 }
+.carousel * {
+  box-sizing: border-box;
+  padding-top: 30px;
+}
 
 .link1:hover .ddown {
   display: block;
