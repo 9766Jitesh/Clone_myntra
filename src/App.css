@@ -18,6 +18,10 @@
 
 }
 
+.carousel * {
+  box-sizing: border-box;
+  padding-top: 30px;
+}
 *{
   font-family: 'Open Sans', sans-serif;
 }
