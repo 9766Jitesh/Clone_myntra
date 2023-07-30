@@ -19,7 +19,7 @@ function App() {
       {/* {location.pathname === '/done' ? null : <Navbar />} */}
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/products" element={<Products/>}></Route>
+        <Route path="/men/" element={<Products/>}></Route>
         <Route path="/products/:id" element={<ProductDetails />}></Route>
         <Route path="/login/" element={<Login></Login>}></Route>
 

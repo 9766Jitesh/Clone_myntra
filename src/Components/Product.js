@@ -7,62 +7,21 @@ import "../App.css"
 
 
 export const Products = () => {
-  const [set, setData] = useState( [] );
-  const [val, setVal] = useState( '' )
+  const [data, setData] = useState( [] );
   
- async function setGender( event ) {
-  // d = []
-     let res = await fetch(" http://localhost:3001/prods");
-        let d = await res.json();
-  //  console.log(d)
-   
-   const JavaScriptApplicants = d.filter(e => e.gender.includes(event.target.value));
-   setData(JavaScriptApplicants)
+  useEffect(() => {
+    fetch("https://dummyjson.com/products/")
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("Fetched data:", json.products);
+        setData(json.products);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+            
   
-  }
-
-   async function setCat( event ) {
-    console.log(event)
-     let res = await fetch(" http://localhost:3001/prods");
-        let d = await res.json();
-
-   
-   const JavaScriptApplicants = d.filter(e => e.category.includes(event.target.value));
-
-
-        setData(JavaScriptApplicants)
- 
-  }
-
-   async function setCol( event ) {
-
-     let res = await fetch(" http://localhost:3001/prods");
-        let d = await res.json();
-
-   
-   const JavaScriptApplicants = d.filter(e => e.color.includes(event.target.value));
-
-
-        setData(JavaScriptApplicants)
  
 
-
-  }
-
-
-
-
-    const getProdData = async ()=>{
-        let res = await fetch(" http://localhost:3001/prods");
-        let d = await res.json();
-        // console.log(d)
-        setData(d)
-    } 
-
-    useEffect(()=>{
-        getProdData()
-    }, []);
-    
     const handleAddToBag = (id, image, title, price,description) => {
     const payload = {
       product_id: id,
@@ -87,77 +46,25 @@ export const Products = () => {
   return (
       
     <Div>
-      <Filter>
-        <h3>FILTERS</h3>
-        <hr />
-        <div onChange={setGender.bind( this )}>
-          
-          <input type="radio" value="Men" name="gender"  /> Male
-          <br />
-          <input type="radio" value="female" name="gender" /> Female
-            <br />
-          <input type="radio" value="boy" name="gender" /> Boy
-            <br />
-        <input type="radio" value="girl" name="gender"/> Girl
-      </div>
-       
-        <hr />
-        <div>
-          <h3> CATEGORIES</h3>
-          <div onChange={setCat.bind( this )}>
-         
-            <input type="checkbox" name="skills" id="radio" value="jwellary" />  Jwelarry
-        <br />
-          
-           
-            <input type="checkbox" name="skills" id="radio" value="Shoes" />  Shoes
-     
-   <br />
-       
-            <input type="checkbox" name="skills" id="radio" value="Jacket" />  Jacket
-         
-          </div>
-          < hr />
-        
-          <h3> Color </h3>
-          <div onChange={setCol.bind( this )}>
-          <input type="radio" name="price" id="radio" value="Pink" /> Red 
-         <br />
-            <input type="radio" name="price" id="radio" value="Blue" />  Blue
-         <br />
-            <input type="radio" name="price" id="radio" value="Black" />  Black
-             <br />
-             <input type="radio" name="price" id="radio" value="White" />   White
-         <br />
-            <input type="radio" name="price" id="radio" value="Golden" /> Golden
-         <br />
-         
-
-          </div>
-        
-        
-        
-        </div>
-
-        </Filter>
+      
   
       <Container>
        
            {
-               set.map((e)=>(
-                   <Box>
-                    <div><Image src={e.image} alt=""/></div>
+              data.map((product)=>(
+                   <Box key={product.id}>
+                    <div ><Image src={product.thumbnail} alt=""/></div>
                    <div className="dec">
                      
-                  <h3>{e.title}</h3>
-                  <p> {e.description}</p>
-                   <p>{"Rs."+e.price}
+                  <h3>{product.title}</h3>
+                  <p> {product.description}</p>
+                   <p>{"Rs."+product.price}
                      <Link style={{ textDecoration: "none", marginLeft: "40%" }}
-                       to={`/products/${ e.id }`}>More Info</Link>
+                       to={`/products/${ product.id }`}>More Info</Link>
                    </p>
                    
                    <button onClick={() =>
-                     handleAddToBag( e.product_id, e.image, e.title, e.price )}
+                     handleAddToBag( product.product_id, product.thumbnail, product.title, product.price )}
                      style={{ marginLeft: "1%" }}>Add to Cart</button>
                    
                    <Button>Buy Now</Button></div>
@@ -175,7 +82,7 @@ background-color: #ffffff;
 grid-template-columns: repeat(5, 18%);
 grid-gap: 2%;
 width: 100%;
-margin-top: 5%;
+margin-top: 100px;
 `
 const  Button = styled.button`
 margin-left: 20%;

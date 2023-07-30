@@ -10,7 +10,7 @@ export const ProductDetails = () => {
     const [data,setData] = useState({});
 
     const getData = async () => {
-        let res = await fetch(` http://localhost:3001/prods/${id}`);
+        let res = await fetch(`https://dummyjson.com/products/${id}`);
         let d = await res.json();
         setData(d);
         console.log(d);
@@ -21,7 +21,7 @@ export const ProductDetails = () => {
 
     return (
         <Container>
-            <Image src={data.image} alt=""/>
+            <Image src={data.thumbnail} alt=""/>
             <Box>
             <h1>{data.title}</h1><br/>
             <p className="descr">{data.description}</p>
@@ -45,8 +45,8 @@ export const ProductDetails = () => {
 
 const Container = styled.div`
 width: 90%;
-padding: 10px;
-height: 600px;
+padding: 100px;
+height: 800px;
 display: grid;
 grid-template-columns: 50% 50%;
 text-align: left;
